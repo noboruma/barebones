@@ -1,3 +1,16 @@
+The aim of the repository is to provide a convenient way to start a Makefile-related project (such as C/C++/Ocaml, whatever).
+This repository aims at providing a small set of generic configuration files in order to generate Makefiles using autotools.
+Just copy your source in the right folder, rename/copy some code snippets and you'll be quickly done !
+
+Features easy to set using this repository:
+- Generate Makefile (make)
+- Generate tests (make check)
+- Set release/debug mode (configure --enable-debug)
+- Set external library checking (configure --with-mylib=path, or nothing if globally available)
+- Generate config.h and run.sh launcher script
+
+Below is an example of set, compile, run workflow:
+
 === HOW TO INSTALL ===
 
 run the following:
