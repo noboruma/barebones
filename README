@@ -1,0 +1,13 @@
+=== HOW TO INSTALL ===
+
+run the following:
+./bootstrap.sh
+mkdir build
+cd build
+../configure --with-stdlib=$PWD/../extern/stdlib
+make -j
+
+=== HOW TO RUN ===
+
+from the build directory run:
+./src/run.sh
