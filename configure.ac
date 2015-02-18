@@ -30,9 +30,9 @@ AC_CONFIG_FILES([src/run.sh],[chmod +x src/run.sh])
 # Check Library
 AC_LANG_PUSH([C++])
 AC_ARG_WITH(libstd,
-  [--with-libstd=DCMTK_ROOT_PATH (path containing stdlib folder)],
+  [--with-libstd=LIBSTD_ROOT_PATH (path containing stdlib folder)],
   [AC_CHECK_HEADER($withval/include/stdio.h, # Check if lib is valid in given paths
-                   [dcmtk_lib_dir=$withval/lib] [dcmtk_header_dir=$withval/include],
+                   [libstd_lib_dir=$withval/lib] [dcmtk_header_dir=$withval/include],
                    [AC_MSG_ERROR([stdlib not found])])],
   [AC_CHECK_HEADER(stdio.h,[],[AC_MSG_ERROR([stdlib not found])])]) # Check if lib is valid in global paths
 AC_LANG_POP
@@ -51,8 +51,8 @@ AC_LANG_POP
 #AC_ARG_WITH(qt-lib,[--with-qt-lib=PATH], [qt_lib_dir=$withval], [])
 
 # create library variables
-STDLIB_HH="$dcmtk_header_dir"
-STDLIB_LIB="$dcmtk_lib_dir"
+STDLIB_HH="$libstd_header_dir"
+STDLIB_LIB="$libstd_lib_dir"
 #QT_CXX="$qt_header_dir"
 #QT_LIB="$qt_lib_dir"
 
