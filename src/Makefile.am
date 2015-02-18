@@ -34,6 +34,10 @@ AM_CPPFLAGS = -I@STDLIB_HH@
 # linking part
 AM_LDFLAGS  = -L@STDLIB_LIB@ -Wl,-Bstatic -Wl,-Bdynamic -pthread -lc
 
+# Linking end of command
+# LDADD = -lstd
+
 CXXFLAGS = -Wall -Werror
 
-clean-local: clean-moc-extra
+# Clean all, add clean-moc-extra for moc
+clean-local:
