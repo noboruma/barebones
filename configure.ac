@@ -30,11 +30,11 @@ AC_CONFIG_FILES([src/run.sh],[chmod +x src/run.sh])
 # Check Library
 AC_LANG_PUSH([C++])
 AC_ARG_WITH(libstd,
-  [--with-libstd=LIBSTD_ROOT_PATH (path containing stdlib folder)],
+  [--with-libstd=LIBSTD_ROOT_PATH (path containing libstd folder)],
   [AC_CHECK_HEADER($withval/include/stdio.h, # Check if lib is valid in given paths
-                   [libstd_lib_dir=$withval/lib] [dcmtk_header_dir=$withval/include],
-                   [AC_MSG_ERROR([stdlib not found])])],
-  [AC_CHECK_HEADER(stdio.h,[],[AC_MSG_ERROR([stdlib not found])])]) # Check if lib is valid in global paths
+                   [libstd_lib_dir=$withval/lib] [libstd_header_dir=$withval/include],
+                   [AC_MSG_ERROR([libstd not found])])],
+  [AC_CHECK_HEADER(stdio.h,[],[AC_MSG_ERROR([libstd not found])])]) # Check if lib is valid in global paths
 AC_LANG_POP
 
 # Check Qt
