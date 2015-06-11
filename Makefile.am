@@ -1,6 +1,7 @@
 SUBDIRS = src . tests
 dist_doc_DATA = README
 
+EXTRA_DIST = VERSION
 
 version-inc-major:
 	awk -F'.' '$$1=$$1+1' OFS='.' $(srcdir)/VERSION >$(builddir)/tmp
