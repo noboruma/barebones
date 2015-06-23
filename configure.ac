@@ -75,4 +75,7 @@ esac],
 
 AM_CONDITIONAL(DEBUG, test x"$debug" = x"true")
 
+# Add to config.h
+AC_DEFINE_UNQUOTED([RES_PATH], [`cd $srcdir && pwd`/res], [res path])
+
 AC_OUTPUT
