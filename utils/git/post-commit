@@ -1,0 +1,4 @@
+#!/bin/sh
+$GIT_DIR/../bootstrap.sh
+rm $GIT_DIR/../ChangeLog
+$GIT_DIR/../utils/git/git-to-changelog --since=2014-01-01 > $GIT_DIR/../ChangeLog

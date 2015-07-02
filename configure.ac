@@ -1,5 +1,7 @@
 m4_include([m4/ax_prefix_config_h.m4])
-AC_INIT([poject], m4_esyscmd([tr -d '\n' < ./VERSION]), [email@domain.com])
+  AC_INIT([poject],
+          m4_esyscmd_s(echo $(git describe --tags)$(git status --porcelain | awk '{if ($1 == "M") {print "-dirty";exit}}')),
+          [email@domain.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([.])
 
