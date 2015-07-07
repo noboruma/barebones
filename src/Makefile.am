@@ -4,11 +4,12 @@ bin_SCRIPTS = run.sh
 CLEANFILES = $(bin_SCRIPTS)
 
 if DEBUG
-AM_CXXFLAGS= -O0 -g3 -DDEBUG -fopenmp -std=c++11
-AM_CFLAGS= -O0 -g3 -DDEBUG -Wall -Wextra -Wconversion -pedantic-errors
+AM_CXXFLAGS= -O0 -g3 -DDEBUG -fopenmp -std=c++11 -Werror -Wall -Wextra -Wconversion -pedantic-errors
+
+#AM_CFLAGS= -O0 -g3 -DDEBUG -Werror -Wall -Wextra -Wconversion -pedantic-errors
 else
-AM_CXXFLAGS= -O3 -DNDEBUG -fopenmp -std=c++11
-AM_CFLAGS= -O3 -DNDEBUG -Wall -Wextra -Wconversion -pedantic-errors
+AM_CXXFLAGS= -O3 -DNDEBUG -fopenmp -std=c++11 -Werror -Wall -Wextra -Wconversion -pedantic-errors
+#AM_CFLAGS= -O3 -DNDEBUG -Werror -Wall -Wextra -Wconversion -pedantic-errors
 endif
 
 bin_PROGRAMS = \
@@ -37,7 +38,6 @@ AM_LDFLAGS  = -L@STDLIB_LIB@ -Wl,-Bstatic -Wl,-Bdynamic -pthread -lc
 # Linking end of command
 # LDADD = -lstd
 
-CXXFLAGS = -Wall -Werror
 
 # Clean all, add clean-moc-extra for moc
 clean-local:
