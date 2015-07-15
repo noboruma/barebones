@@ -40,29 +40,15 @@ AC_ARG_WITH(libstd,
 AC_LANG_POP
 
 # Check Qt
-#AC_ARG_WITH(qt,[--with-qt=QT_ROOT_PATH (path containing qt folder)], [qt_header_dir=$withval/include]
-#                                         [qt_lib_dir=$withval/lib]
-#                                         [MOC=$withval/bin/moc], 
-#[PKG_CHECK_MODULES([QT4], [QtCore QtGui >= 4.6.2], [
-#  AC_CHECK_PROGS([MOC], [moc-qt4 moc], moc, `eval $PKG_CONFIG --variable=exec_prefix QtCore`/bin)
-#  AC_CHECK_PROGS([RCC], rcc, rcc, `eval $PKG_CONFIG --variable=exec_prefix QtCore`/bin)
-#  AC_CHECK_PROGS([UIC], [uic-qt4 uic], uic, `eval $PKG_CONFIG --variable=exec_prefix QtCore`/bin)
-#], [AC_MSG_ERROR([Qt 4.6.2 library not found])
-#])
-#])
-#AC_ARG_WITH(qt-lib,[--with-qt-lib=PATH], [qt_lib_dir=$withval], [])
+#AT_WITH_QT
 
 # create library variables
 STDLIB_HH="$libstd_header_dir"
 STDLIB_LIB="$libstd_lib_dir"
-#QT_CXX="$qt_header_dir"
-#QT_LIB="$qt_lib_dir"
 
 # export library variables
 AC_SUBST([STDLIB_HH])
 AC_SUBST([STDLIB_LIB])
-#AC_SUBST([QT_CXX])
-#AC_SUBST([QT_LIB])
 
 ## Add --enable-debug
 AC_ARG_ENABLE(debug,
