@@ -1,3 +1,7 @@
+2015-07-16  Thomas Legris  <legris.thomas@gmail.com>
+
+	Clean configure.ac
+
 2015-07-15  Thomas Legris  <legris.thomas@gmail.com>
 
 	Enhance Qt support

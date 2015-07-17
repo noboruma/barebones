@@ -2,6 +2,10 @@
   AC_INIT([poject],
           m4_esyscmd_s(echo $(git describe --tags)$(git status --porcelain | awk '{if ($1 == "M") {print "-dirty";exit}}')),
           [email@domain.com])
+
+${CFLAGS=""}
+${CXXFLAGS=""}
+
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([.])
 
