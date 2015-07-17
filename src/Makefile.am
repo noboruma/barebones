@@ -1,4 +1,5 @@
-# include ../moc.mk # For QT moc objects
+# include ../autotroll.mk # For QT moc objects
+# Look at Autotroll for QT configuration via google (Do not use variables from Makefile.am, pick those that you need that are displayed during configure)
 
 bin_SCRIPTS = run.sh
 CLEANFILES = $(bin_SCRIPTS)
@@ -14,12 +15,8 @@ endif
 bin_PROGRAMS = \
 	bare
 
-#bare_MOC_FILES = moc_qtfile.cc
-#qtfile.cc: moc_qtfile.cc
-
 bare_SOURCES = \
 							main.cc
-#							qtfile.cc
 
 #noinst_LIBRARIES = external_lib.a
 #external_lib_a_SOURCES = ext_file.c
@@ -39,5 +36,3 @@ AM_LDFLAGS  = -L@STDLIB_LIB@ -Wl,-Bstatic -Wl,-Bdynamic -pthread -lc
 
 CXXFLAGS = -Wall -Werror
 
-# Clean all, add clean-moc-extra for moc
-clean-local:

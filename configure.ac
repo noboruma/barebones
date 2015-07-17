@@ -24,9 +24,12 @@ AC_CONFIG_FILES([
   tests/Makefile
 ])
 
+#================================ SCRIPT PART ===
+
 #Generate scripts
 AC_CONFIG_FILES([src/run.sh],[chmod +x src/run.sh])
 
+#================================ EXTERNAL LIB PART ===
 # Check Library
 AC_LANG_PUSH([C++])
 AC_ARG_WITH(libstd,
@@ -34,34 +37,19 @@ AC_ARG_WITH(libstd,
   [AC_CHECK_HEADER($withval/include/stdio.h, # Check if lib is valid in given paths
                    [libstd_lib_dir=$withval/lib] [libstd_header_dir=$withval/include],
                    [AC_MSG_ERROR([libstd not found])])],
-  [AC_CHECK_HEADER(stdio.h,[],[AC_MSG_ERROR([libstd not found])])]) # Check if lib is valid in global paths
+  [AC_CHECK_HEADER(stdio.h,
+                   [libstd_lib_dir=/usr/lib] [libstd_header_dir=/usr/include],
+                   [AC_MSG_ERROR([libstd not found])])]) # Check if lib is valid in global paths
 AC_LANG_POP
 
 # Check Qt
-#AC_ARG_WITH(qt,[--with-qt=QT_ROOT_PATH (path containing qt folder)], [qt_header_dir=$withval/include]
-#                                         [qt_lib_dir=$withval/lib]
-#                                         [MOC=$withval/bin/moc], 
-#[PKG_CHECK_MODULES([QT4], [QtCore QtGui >= 4.6.2], [
-#  AC_CHECK_PROGS([MOC], [moc-qt4 moc], moc, `eval $PKG_CONFIG --variable=exec_prefix QtCore`/bin)
-#  AC_CHECK_PROGS([RCC], rcc, rcc, `eval $PKG_CONFIG --variable=exec_prefix QtCore`/bin)
-#  AC_CHECK_PROGS([UIC], [uic-qt4 uic], uic, `eval $PKG_CONFIG --variable=exec_prefix QtCore`/bin)
-#], [AC_MSG_ERROR([Qt 4.6.2 library not found])
-#])
-#])
-#AC_ARG_WITH(qt-lib,[--with-qt-lib=PATH], [qt_lib_dir=$withval], [])
-
-# create library variables
-STDLIB_HH="$libstd_header_dir"
-STDLIB_LIB="$libstd_lib_dir"
-#QT_CXX="$qt_header_dir"
-#QT_LIB="$qt_lib_dir"
+#AT_WITH_QT
 
 # export library variables
-AC_SUBST([STDLIB_HH])
-AC_SUBST([STDLIB_LIB])
-#AC_SUBST([QT_CXX])
-#AC_SUBST([QT_LIB])
+AC_SUBST([STDLIB_HH], "$libstd_header_dir")
+AC_SUBST([STDLIB_LIB], "$libstd_lib_dir")
 
+#================================ DEBUG PART ===
 ## Add --enable-debug
 AC_ARG_ENABLE(debug,
 AS_HELP_STRING([--enable-debug],
@@ -74,6 +62,8 @@ esac],
 [debug=false])
 
 AM_CONDITIONAL(DEBUG, test x"$debug" = x"true")
+
+#================================ CONFIG PART ===
 
 # Add to config.h
 AC_DEFINE_UNQUOTED([RES_PATH], [`cd $srcdir && pwd`/res], [res path])
