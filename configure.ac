@@ -1,5 +1,5 @@
 #m4_include([m4/ax_prefix_config_h.m4])
-  AC_INIT([poject],
+  AC_INIT([project],
           m4_esyscmd_s(echo $(git describe --tags)$(git status --porcelain | awk '{if ($1 == "M") {print "-dirty";exit}}')),
           [email@domain.com])
 
@@ -28,6 +28,7 @@ AC_CONFIG_FILES([
   Makefile
   src/Makefile
   tests/Makefile
+  doc/Makefile
 ])
 
 #================================ SCRIPT PART ===
@@ -36,6 +37,14 @@ AC_CONFIG_FILES([
 AC_CONFIG_FILES([src/run.sh],[chmod +x src/run.sh])
 
 #================================ EXTERNAL LIB PART ===
+AC_CHECK_PROGS([DOXYGEN], [doxygen])
+if test -z "$DOXYGEN";
+   then AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
+fi
+AM_CONDITIONAL([HAVE_DOXYGEN], 
+[test -n "$DOXYGEN"])AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([doc/Doxyfile])])
+
+
 # Check Library
 AC_LANG_PUSH([C++])
 AC_ARG_WITH(libstd,
